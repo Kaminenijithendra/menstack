@@ -48,5 +48,29 @@ router.post('/', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+router.get('/', async (req, res) => {
+    try {
+        const employees = await Employee.find();
+        res.json(employees);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const employee = await Employee.findByIdAndDelete(req.params.id);
+        if (!employee) {
+            return res.status(404).json({ message: 'Employee not found' });
+        }
+        // Optionally delete the image file
+        if (employee.img) {
+            fs.unlinkSync(path.join(__dirname, '..', employee.img));
+        }
+        res.json({ message: 'Employee deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;
