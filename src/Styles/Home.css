@@ -1,0 +1,18 @@
+/* Home.css */
+
+/* General styling for the home page */
+.home {
+    padding: 80px 20px 20px; /* Increased top padding to account for navbar height */
+    text-align: center;
+    background-color: #f8f9fa; /* Light background color */
+    min-height: calc(100vh - 60px); /* Adjust height considering the navbar height */
+}
+
+/* Additional styling for better visibility */
+.home h1 {
+    color: #007bff; /* Primary color */
+}
+
+.home p {
+    color: #555; /* Darker text color for contrast */
+}
